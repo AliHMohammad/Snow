@@ -1,5 +1,7 @@
 let yPos = 0;
 
+move();
+
 function reset() {
     yPos = -10;
 
@@ -18,5 +20,5 @@ function move() {
     requestAnimationFrame(move);
 }
 
-move();
+
 
