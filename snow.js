@@ -29,7 +29,7 @@ function reset(i) {
   //Minus så den starter udenfor browseren.
   yPos[i] = Math.random() * -1000;
   //Initering / ressetning af hastigheden for speed[i].
-  speed[i] = Math.random() * 1.7 + 0.6;
+  speed[i] = Math.random() * 1 + 0.6;
 
   //Initering / resettning af størrelsen af objektet
   flakes[i].style.transform = "scale(" + Math.random() + ")";
