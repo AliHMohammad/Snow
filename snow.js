@@ -1,4 +1,5 @@
-let yPos = []
+let yPos = [];
+let xPos = [];
 let speed = [];
 
 //Array af objekter
@@ -7,55 +8,54 @@ let flakes = document.querySelectorAll(".snowflake");
 init();
 
 function init() {
-    let px = 25
-    for (let i = 0; i < flakes.length; i++) {
-        //Initiering af venstre position af objektet. Px inkrimineres med 50 hvert loop
-        flakes[i].style.left = px + "px";
-        px += 50;
-        //Vi initierer reset(i) for at bestemme yPos, speed, og scale af objekt
-        reset(i);
-    }
-    
-    //Starts moving snowflakes:
-    move();
-}
+  //Vi bestemmer værdien af browser-width
+  let maxWidth = document.querySelector("#nightsky").clientWidth;
 
+  for (let i = 0; i < flakes.length; i++) {
+    //Vi bestemmer random værdi af x-værdi af objekt vha. maxWidth
+    let px = Math.random() * maxWidth;
+    flakes[i].style.left = px + "px";
+
+    //Vi initierer reset(i) for at bestemme yPos, speed, scale af objekt OG ny værdi af xPos, Så den dukker et nyt sted op fra x-position.
+    reset(i);
+  }
+
+  //Starts moving snowflakes:
+  move();
+}
 
 function reset(i) {
-    //Initering /ressetning af i position bestemmes med Math.random.
-    //Minus så den starter udenfor browseren.
-    yPos[i] = Math.random() * -50;
-    //Initering / ressetning af hastigheden for speed[i].
-    speed[i] = (Math.random() * 5) + 1;
+  let maxWidth = document.querySelector("#nightsky").clientWidth;
+  xPos[i] = Math.random() * maxWidth;
+  
+  //Initering / ressetning af i position bestemmes med Math.random.
+  //Minus så den starter udenfor browseren.
+  yPos[i] = Math.random() * -1000;
+  //Initering / ressetning af hastigheden for speed[i].
+  speed[i] = Math.random() * 2 + 1;
 
-    //Initering / resettning af størrelsen af objektet
-    flakes[i].style.transform = "scale(" + Math.random() + ")";
-
-
+  //Initering / resettning af størrelsen af objektet
+  flakes[i].style.transform = "scale(" + Math.random() + ")";
 }
-
 
 function move() {
-    //browser-højde
-    let max = document.querySelector("#nightsky").clientHeight;
+  //browser-højde
+  let maxHeight = document.querySelector("#nightsky").clientHeight;
 
-    for (let i = 0; i < flakes.length; i++) {
-      //Bevægelse
-      flakes[i].style.top = yPos[i] + "px";
-      
+  for (let i = 0; i < flakes.length; i++) {
+    //Bevægelse
+    flakes[i].style.top = yPos[i] + "px";
+    flakes[i].style.left = xPos[i] + "px";
 
-      //Nuværende y-position adderes med objektets hastighed.
-      yPos[i] += speed[i];
+    //Nuværende y-position adderes med objektets hastighed.
+    yPos[i] += speed[i];
 
-      //hvis y-position større end browser-højde, reset index "i" for den enkelte array
-      if (yPos[i] > max) {
-        reset(i);
-      }
+    //hvis y-position større end browser-højde, reset index "i" for den enkelte array
+    if (yPos[i] > maxHeight) {
+      reset(i);
     }
+  }
 
-    //Kør move() igen med et kort delay
-    requestAnimationFrame(move);
+  //Kør move() igen med et kort delay
+  requestAnimationFrame(move);
 }
-
-
-
