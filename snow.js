@@ -7,9 +7,7 @@ let flakes = document.querySelectorAll(".snowflake");
 init();
 
 function init() {
-    
     let px = 25
-
     for (let i = 0; i < flakes.length; i++) {
         //Initiering af venstre position af objektet. Px inkrimineres med 50 hvert loop 
         flakes[i].style.left = px + "px";
@@ -19,7 +17,7 @@ function init() {
         yPos[i] = Math.random() * 100;
         
         //Initering af objekt hastighed med Math.random()
-        speed[i] = Math.random() * 10;
+        speed[i] = (Math.random() * 5) + 1;
     }
     
     //Starts moving snowflakes:
@@ -31,7 +29,7 @@ function reset(i) {
     //i position bestemmes med Math.random. Minus så den starter udenfor browseren.
     yPos[i] = Math.random() * -50;
     //Hastigheden for speed[i] resettes med en ny.
-    speed[i] = Math.random() * 10;
+    speed[i] = (Math.random() * 5) + 1;
 
     //Resetter størrelsen af objektet
     flakes[i].style.transform = "scale(" + Math.random() + ")";
