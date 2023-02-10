@@ -9,15 +9,11 @@ init();
 function init() {
     let px = 25
     for (let i = 0; i < flakes.length; i++) {
-        //Initiering af venstre position af objektet. Px inkrimineres med 50 hvert loop 
+        //Initiering af venstre position af objektet. Px inkrimineres med 50 hvert loop
         flakes[i].style.left = px + "px";
         px += 50;
-
-        //Initiering af top position af objektet med Math.random()
-        yPos[i] = Math.random() * 100;
-        
-        //Initering af objekt hastighed med Math.random()
-        speed[i] = (Math.random() * 5) + 1;
+        //Vi initierer reset(i) for at bestemme yPos, speed, og scale af objekt
+        reset(i);
     }
     
     //Starts moving snowflakes:
@@ -26,12 +22,13 @@ function init() {
 
 
 function reset(i) {
-    //i position bestemmes med Math.random. Minus så den starter udenfor browseren.
+    //Initering /ressetning af i position bestemmes med Math.random.
+    //Minus så den starter udenfor browseren.
     yPos[i] = Math.random() * -50;
-    //Hastigheden for speed[i] resettes med en ny.
+    //Initering / ressetning af hastigheden for speed[i].
     speed[i] = (Math.random() * 5) + 1;
 
-    //Resetter størrelsen af objektet
+    //Initering / resettning af størrelsen af objektet
     flakes[i].style.transform = "scale(" + Math.random() + ")";
 
 
